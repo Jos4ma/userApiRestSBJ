@@ -5,6 +5,7 @@ import java.time.LocalDateTime;
 import java.util.Objects;
 import java.util.List;
 import java.util.regex.Pattern;
+import java.util.UUID;
 
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.ElementCollection;
@@ -17,8 +18,7 @@ import jakarta.servlet.http.HttpServletRequest;
 class Employee {
 
     @Id 
-    @GeneratedValue 
-    Long id;
+    private UUID id = UUID.randomUUID();
     private String name;
     private String password;
     private String email;
@@ -32,7 +32,8 @@ class Employee {
 
     Employee() {}
 
-    Employee(String name, String password, String email, boolean isactive, List<Phone> phones) {
+    Employee(UUID id, String name, String password, String email, boolean isactive, List<Phone> phones) {
+        this.id = id;
         this.name = name;
         this.password = password;
         this.email = email;
@@ -42,7 +43,7 @@ class Employee {
         this.passwordRegex = "";
     }
 
-    public Long getId() {
+    public UUID getId() {
         return this.id;
     }
 
@@ -58,7 +59,7 @@ class Employee {
         return this.email;
     }
 
-    public void setId(Long id) {
+    public void setId(UUID id) {
         this.id = id;
     }
 
@@ -155,7 +156,7 @@ class Employee {
   
     public static class EmployeeResponse {
 
-        private Long id;
+        private UUID id;
         private LocalDateTime created;
         private LocalDateTime modified;
         private LocalDateTime lastLogin;
@@ -164,7 +165,7 @@ class Employee {
         private String token;
       
 
-        public EmployeeResponse(Long id, LocalDateTime created, LocalDateTime modified, LocalDateTime lastLogin, boolean isactive, String token) {
+        public EmployeeResponse(UUID id, LocalDateTime created, LocalDateTime modified, LocalDateTime lastLogin, boolean isactive, String token) {
             this.id = id;
             this.created = created;
             this.modified = modified;
@@ -173,10 +174,10 @@ class Employee {
             this.token = token;   
         }
 
-        public Long getId() {
+        public UUID getId() {
             return id;
         }
-        public void setId(Long id) {
+        public void setId(UUID id) {
             this.id = id;
         }
 
