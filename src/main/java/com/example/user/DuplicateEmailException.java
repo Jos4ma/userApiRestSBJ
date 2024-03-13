@@ -1,8 +1,8 @@
-package com.example.user;
+// package com.example.user.Auth;
 
-class DuplicateEmailException extends RuntimeException {
+// class DuplicateEmailException extends RuntimeException {
 
-    DuplicateEmailException(String email) {
-        super("El correo " + email + " ya está registrado.");
-    }
-}
+//     DuplicateEmailException(String email) {
+//         super("El correo " + email + " ya está registrado.");
+//     }
+// }

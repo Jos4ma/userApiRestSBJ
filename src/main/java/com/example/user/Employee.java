@@ -10,12 +10,15 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.ElementCollection;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
+import jakarta.servlet.http.HttpServletRequest;
 
 
 @Entity
 class Employee {
 
-    private @Id @GeneratedValue Long id;
+    @Id 
+    @GeneratedValue 
+    Long id;
     private String name;
     private String password;
     private String email;
@@ -36,7 +39,7 @@ class Employee {
         this.modified = null;
         this.isactive = isactive;
         this.phones = phones;
- 
+        this.passwordRegex = "";
     }
 
     public Long getId() {
@@ -126,7 +129,6 @@ class Employee {
           // Si no se proporciona una expresión regular, cualquier contraseña es válida
           return true;
       }
-
       Pattern pattern = Pattern.compile(passwordRegex);
       return pattern.matcher(password).matches();
   }
@@ -159,15 +161,16 @@ class Employee {
         private LocalDateTime lastLogin;
         //private String token;
         private boolean isactive;
-
+        private String token;
       
 
-        public EmployeeResponse(Long id, LocalDateTime created, LocalDateTime modified, LocalDateTime lastLogin, boolean isactive) {
+        public EmployeeResponse(Long id, LocalDateTime created, LocalDateTime modified, LocalDateTime lastLogin, boolean isactive, String token) {
             this.id = id;
             this.created = created;
             this.modified = modified;
             this.lastLogin = lastLogin;
-            this.isactive = isactive;   
+            this.isactive = isactive;
+            this.token = token;   
         }
 
         public Long getId() {
@@ -186,6 +189,12 @@ class Employee {
 
         public LocalDateTime getModified() {
             return modified;
+        }
+        public String getToken() {
+            return token;
+        }
+        public void setToken(String token) {
+            this.token = token;
         }
         public void setModified(LocalDateTime modified) {
             this.modified = modified;
@@ -208,9 +217,10 @@ class Employee {
     // public EmployeeResponse toEmployeeResponse() {
     //   return new EmployeeResponse(this.id,LocalDateTime.now());
     // }
-    public EmployeeResponse toEmployeeResponse() {
+    public EmployeeResponse toEmployeeResponse(HttpServletRequest request) {
         LocalDateTime now = LocalDateTime.now();
-        return new EmployeeResponse(this.id, now, now, now, this.isactive);
+        String jwtToken = (String) request.getAttribute("jwtToken");
+        return new EmployeeResponse(this.id, now, now, now, this.isactive, jwtToken);
     }
 
     public void updateModifiedTimestamp() {
