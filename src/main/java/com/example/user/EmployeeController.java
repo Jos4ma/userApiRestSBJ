@@ -33,6 +33,7 @@ import jakarta.servlet.http.HttpServletRequest;
 
 @RestController
 @RequestMapping("/api/v2")
+//@Tag(name = "Companies resourse")
 class EmployeeController {
 
   private final EmployeeRepository repository;
@@ -46,7 +47,7 @@ class EmployeeController {
   //   return repository.findAll();
   // }
 
-
+  //@Operation(summary = "post a company given a company from body")
   @PostMapping(value = "demo" )
   public Employee.EmployeeResponse createEmployee(HttpServletRequest request, @RequestBody Employee employee) {
     // Actualizar la propiedad "modified"

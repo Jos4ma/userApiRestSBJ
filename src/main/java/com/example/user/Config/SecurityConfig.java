@@ -21,10 +21,19 @@ public class SecurityConfig {
 
     private final JwtAuthenticationFilter jwtAuthenticationFilter;
     private final AuthenticationProvider authProvider;
+    private static final String[] SWAGGER_WHITELIST = {
+        "/swagger-ui/**",
+        "/v3/api-docs/**",
+        "/swagger-resources/**",
+        "/swagger-resources"
+    }; 
+
+    
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception
     {
+        
         return http
             .csrf(csrf -> 
                 csrf
@@ -32,6 +41,7 @@ public class SecurityConfig {
             .authorizeHttpRequests(authRequest ->
               authRequest
                 .requestMatchers("/auth/**").permitAll()
+                .requestMatchers(SWAGGER_WHITELIST).permitAll()
                 .anyRequest().authenticated()
                 )
             //.formLogin(withDefaults())
@@ -46,6 +56,7 @@ public class SecurityConfig {
     }
 
 }
+
 // @Configuration
 // @EnableWebSecurity
 // public class SecurityConfig extends WebSecurityConfigurerAdapter {
