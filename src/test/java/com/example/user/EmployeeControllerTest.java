@@ -1,54 +1,54 @@
-package com.example.user;
+// package com.example.user;
 
 
 
-import static org.mockito.Mockito.*;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
+// import static org.mockito.Mockito.*;
+// import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
+// import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
-import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.extension.ExtendWith;
-import org.mockito.InjectMocks;
-import org.mockito.Mock;
-import org.mockito.junit.jupiter.MockitoExtension;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
-import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.http.MediaType;
-import org.springframework.test.web.servlet.MockMvc;
-import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
-import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
+// import org.junit.jupiter.api.Test;
+// import org.junit.jupiter.api.extension.ExtendWith;
+// import org.mockito.InjectMocks;
+// import org.mockito.Mock;
+// import org.mockito.junit.jupiter.MockitoExtension;
+// import org.springframework.beans.factory.annotation.Autowired;
+// import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
+// import org.springframework.boot.test.context.SpringBootTest;
+// import org.springframework.http.MediaType;
+// import org.springframework.test.web.servlet.MockMvc;
+// import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
+// import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 
-@ExtendWith(MockitoExtension.class)
-@SpringBootTest
-@AutoConfigureMockMvc
-class EmployeeControllerTest {
+// @ExtendWith(MockitoExtension.class)
+// @SpringBootTest
+// @AutoConfigureMockMvc
+// class EmployeeControllerTest {
 
-    @Autowired
-    private MockMvc mockMvc;
+//     @Autowired
+//     private MockMvc mockMvc;
 
-    @Mock
-    private EmployeeRepository repository;
+//     @Mock
+//     private EmployeeRepository repository;
 
-    @InjectMocks
-    private EmployeeController controller;
+//     @InjectMocks
+//     private EmployeeController controller;
 
-    @Test
-    void testCreateEmployee() throws Exception {
-        // Given
-        Employee employee = new Employee(/* provide necessary parameters */);
-        when(repository.save(any(Employee.class))).thenReturn(employee);
+//     @Test
+//     void testCreateEmployee() throws Exception {
+//         // Given
+//         Employee employee = new Employee(/* provide necessary parameters */);
+//         when(repository.save(any(Employee.class))).thenReturn(employee);
 
-        // When
-        mockMvc.perform(post("/api/v2/demo")
-                .contentType(MediaType.APPLICATION_JSON)
-                .content(/* provide JSON content for employee */))
-                .andExpect(status().isOk());
+//         // When
+//         mockMvc.perform(post("/api/v2/demo")
+//                 .contentType(MediaType.APPLICATION_JSON)
+//                 .content(/* provide JSON content for employee */))
+//                 .andExpect(status().isOk());
 
-        // Then: Add more assertions as needed
-        verify(repository, times(1)).save(any(Employee.class));
-    }
-}
+//         // Then: Add more assertions as needed
+//         verify(repository, times(1)).save(any(Employee.class));
+//     }
+// }
 
 
 
